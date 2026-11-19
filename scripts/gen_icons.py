@@ -11,7 +11,7 @@ not committed to the repository.
 import math
 import os
 
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE = os.path.join(REPO_ROOT, "app", "src", "main", "res")
@@ -61,3 +61,61 @@ for name, hexcol in COLORS:
         img.save(os.path.join(BASE, f"mipmap-{dens}", name + ".png"))
 
 print("icons generated")
+
+# --- Widget swatches: satu drawable warna solid per warna.
+# (android:backgroundTint tidak bisa diandalkan di layout RemoteViews,
+# jadi layout widget memakai drawable statis ini.)
+DRAWABLE_DIR = os.path.join(REPO_ROOT, "app", "src", "main", "res", "drawable")
+os.makedirs(DRAWABLE_DIR, exist_ok=True)
+for name, hexcol in COLORS:
+    short = {"ic_launcher": "default"}.get(name, name.replace("ic_", ""))
+    with open(os.path.join(DRAWABLE_DIR, f"swatch_{short}.xml"), "w") as f:
+        f.write(
+            '<?xml version="1.0" encoding="utf-8"?>\n'
+            '<shape xmlns:android="http://schemas.android.com/apk/res/android"\n'
+            '    android:shape="rectangle">\n'
+            f'    <solid android:color="{hexcol}" />\n'
+            '    <corners android:radius="12dp" />\n'
+            '</shape>\n'
+        )
+
+# --- Widget preview image untuk daftar widget (previewImage).
+def _load_font(bold, size):
+    for path in (
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",
+        "/usr/share/fonts/TTF/DejaVuSans-Bold.ttf",
+        "DejaVuSans-Bold.ttf",
+    ):
+        try:
+            return ImageFont.truetype(path, size)
+        except Exception:
+            continue
+    return ImageFont.load_default()
+
+PREVIEW_DIR = os.path.join(
+    REPO_ROOT, "app", "src", "main", "res", "drawable-xxxhdpi"
+)
+os.makedirs(PREVIEW_DIR, exist_ok=True)
+pw, ph = 720, 800
+preview = Image.new("RGBA", (pw, ph), (255, 255, 255, 255))
+pdr = ImageDraw.Draw(preview)
+font_title = _load_font(True, 44)
+pdr.text((40, 36), "Ubah Ikon", fill=(34, 34, 34, 255), font=font_title)
+margin, gap = 40, 24
+cell = (pw - 2 * margin - 2 * gap) // 3
+top = 130
+for i, (name, hexcol) in enumerate(COLORS):
+    row, col = divmod(i, 3)
+    x0 = margin + col * (cell + gap)
+    y0 = top + row * (cell + gap)
+    pdr.rounded_rectangle(
+        [x0, y0, x0 + cell, y0 + cell],
+        radius=28,
+        fill=hex2rgb(hexcol) + (255,),
+    )
+    if i == 0:
+        pts = star_points(x0 + cell / 2, y0 + cell / 2, cell * 0.30, cell * 0.075)
+        pdr.polygon(pts, fill=(255, 255, 255, 255))
+preview.save(os.path.join(PREVIEW_DIR, "widget_preview.png"))
+print("widget swatches + preview generated")
