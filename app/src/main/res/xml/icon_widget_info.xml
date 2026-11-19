@@ -4,5 +4,7 @@
     android:minHeight="200dp"
     android:updatePeriodMillis="0"
     android:initialLayout="@layout/widget_icon_changer"
+    android:previewImage="@drawable/widget_preview"
+    android:previewLayout="@layout/widget_icon_changer"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen" />
