@@ -86,6 +86,7 @@ fun IconPickerScreen() {
                         .clickable {
                             applyIcon(context, icon)
                             currentId = icon.id
+                            IconWidgetProvider.updateAllWidgets(context)
                             Toast.makeText(
                                 context,
                                 "Ikon diubah ke ${icon.label}",
@@ -115,6 +116,12 @@ fun IconPickerScreen() {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Kalau ikon di layar utama belum berubah, tunggu beberapa detik atau kembali ke Home.",
+            fontSize = 13.sp,
+            color = Color(0xFF777777),
+        )
+        Spacer(modifier = Modifier.height(8.dp))
+        Text(
+            text = "Tips: tahan layar utama, pilih Widget, tambah Ubah Ikon, biar bisa ganti ikon tanpa buka aplikasi.",
             fontSize = 13.sp,
             color = Color(0xFF777777),
         )
