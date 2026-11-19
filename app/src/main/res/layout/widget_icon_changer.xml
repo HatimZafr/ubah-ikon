@@ -30,8 +30,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#003435" />
+                android:background="@drawable/swatch_default" />
             <TextView
                 android:id="@+id/check_default"
                 android:layout_width="match_parent"
@@ -53,8 +52,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#E53935" />
+                android:background="@drawable/swatch_red" />
             <TextView
                 android:id="@+id/check_red"
                 android:layout_width="match_parent"
@@ -76,8 +74,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#F57C00" />
+                android:background="@drawable/swatch_orange" />
             <TextView
                 android:id="@+id/check_orange"
                 android:layout_width="match_parent"
@@ -106,8 +103,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#43A047" />
+                android:background="@drawable/swatch_green" />
             <TextView
                 android:id="@+id/check_green"
                 android:layout_width="match_parent"
@@ -129,8 +125,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#00897B" />
+                android:background="@drawable/swatch_teal" />
             <TextView
                 android:id="@+id/check_teal"
                 android:layout_width="match_parent"
@@ -152,8 +147,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#1E88E5" />
+                android:background="@drawable/swatch_blue" />
             <TextView
                 android:id="@+id/check_blue"
                 android:layout_width="match_parent"
@@ -182,8 +176,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#8E24AA" />
+                android:background="@drawable/swatch_purple" />
             <TextView
                 android:id="@+id/check_purple"
                 android:layout_width="match_parent"
@@ -205,8 +198,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#D81B60" />
+                android:background="@drawable/swatch_pink" />
             <TextView
                 android:id="@+id/check_pink"
                 android:layout_width="match_parent"
@@ -228,8 +220,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/swatch"
-                android:backgroundTint="#6D4C41" />
+                android:background="@drawable/swatch_brown" />
             <TextView
                 android:id="@+id/check_brown"
                 android:layout_width="match_parent"
